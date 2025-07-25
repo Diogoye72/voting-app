@@ -25,7 +25,7 @@ pipeline {
                 dir('voting-app') {
                     script {
                         echo 'Deploying the application stack...'
-                        sh 'docker compose up -d'
+                        sh 'docker-compose up -d'
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
                 dir('voting-app') {
                     script {
                         echo 'Verifying the status of deployed services...'
-                        sh 'docker compose ps'
+                        sh 'docker-compose ps'
                         sleep(time: 10, unit: 'SECONDS')
                         echo 'Deployment verification complete.'
                     }
