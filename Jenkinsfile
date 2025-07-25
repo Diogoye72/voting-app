@@ -14,7 +14,7 @@ pipeline {
                 dir('voting-app') {
                     script {
                         echo 'Building Docker images for all services...'
-                        sh 'docker compose build'
+                        sh 'docker-compose build'
                     }
                 }
             }
