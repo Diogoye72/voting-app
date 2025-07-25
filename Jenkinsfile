@@ -11,29 +11,35 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                script {
-                    echo 'Building Docker images for all services...'
-                    sh 'docker compose build --no-cache'
+                dir('voting-app') {
+                    script {
+                        echo 'Building Docker images for all services...'
+                        sh 'docker compose build --no-cache'
+                    }
                 }
             }
         }
 
         stage('Deploy Application') {
             steps {
-                script {
-                    echo 'Deploying the application stack...'
-                    sh 'docker compose up -d'
+                dir('voting-app') {
+                    script {
+                        echo 'Deploying the application stack...'
+                        sh 'docker compose up -d'
+                    }
                 }
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                script {
-                    echo 'Verifying the status of deployed services...'
-                    sh 'docker compose ps'
-                    sleep(time: 10, unit: 'SECONDS')
-                    echo 'Deployment verification complete.'
+                dir('voting-app') {
+                    script {
+                        echo 'Verifying the status of deployed services...'
+                        sh 'docker compose ps'
+                        sleep(time: 10, unit: 'SECONDS')
+                        echo 'Deployment verification complete.'
+                    }
                 }
             }
         }
