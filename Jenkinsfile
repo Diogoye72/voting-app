@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Remplacez par l'URL de votre dépôt Git
-                git url: 'https://github.com/votre-utilisateur/voting-app.git', branch: 'main'
+                git url: 'https://github.com/Diogoye72/voting-app.git', branch: 'main'
                 echo 'Source code checked out successfully.'
             }
         }
